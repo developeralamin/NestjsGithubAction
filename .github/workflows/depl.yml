@@ -21,8 +21,7 @@ jobs:
         run: echo "${{ secrets.ENV }}" | base64 -d > .env
 
       - name: Build and tag Docker image
-        run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-example:latest .
+        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-example:latest .
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-example:latest
@@ -36,6 +35,6 @@ jobs:
           labels: |
             org.opencontainers.image.title=NestJS Example
             org.opencontainers.image.description=Example NestJS application
-            org.opencontainers.image.url=https://github.com/${{github.repository}}
-            org.opencontainers.image.revision=${{github.sha}}
+            org.opencontainers.image.url=https://github.com/${{ github.repository }}
+            org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.licenses=MIT
